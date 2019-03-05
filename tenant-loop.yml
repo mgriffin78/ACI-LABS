@@ -1,0 +1,20 @@
+---
+- hosts: apic
+  connection: local
+  gather_facts: no
+  vars:
+   state: present
+  vars_files: 
+   - ./vars.yml
+  tasks:
+  - name: Add a new tenant
+    aci_tenant:
+     host: "{{ inventory_hostname }}"
+     username: "{{ username }}"
+     password: "{{ password }}"
+     tenant: "{{ item }}"
+     description: Created By Ansible
+     state: "{{ state }}"
+     validate_certs: no
+    loop: "{{ tenants }}"
+

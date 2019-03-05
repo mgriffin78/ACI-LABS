@@ -1,0 +1,23 @@
+---
+- hosts: apic
+  connection: local
+  gather_facts: no
+  vars:
+   tenant: 'POD1_RESTAPI'
+   descr: 'Created by the Ansible via REST API'
+  tasks:
+  - name: Add a tenant using REST API
+    aci_rest:
+     host: "{{ inventory_hostname }}"
+     username: "{{ username }}"
+     password: "{{ password }}"
+     validate_certs: no
+     path: /api/mo/uni.json
+     method: post
+     content:
+       fvTenant:
+         attributes:
+           name: "{{ tenant }}"
+           descr: "{{ descr }}"
+    delegate_to: localhost
+

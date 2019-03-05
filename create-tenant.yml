@@ -1,0 +1,44 @@
+---
+- hosts: apic
+  connection: local
+  gather_facts: no
+  vars:
+   tenant: POD1_Ansible
+   vrf: POD1_VRF
+   state: present
+  tasks:
+  - name: Add a new tenant
+    aci_tenant:
+     host: "{{ inventory_hostname }}"
+     username: "{{ username }}"
+     password: "{{ password }}"
+     tenant: "{{ tenant }}"
+     description: Created By Ansible
+     state: "{{ state }}"
+     validate_certs: no
+
+  - name: Add a new VRF to a tenant
+    aci_vrf:
+     host: "{{ inventory_hostname }}"
+     username: "{{ username }}"
+     password: "{{ password }}"
+     vrf: "{{ vrf }}"
+     tenant: "{{ tenant }}"
+     descr: Ansible Created VRF
+     policy_control_preference: enforced
+     policy_control_direction: ingress
+     state: "{{ state }}"
+     validate_certs: no
+     output_level: debug
+
+  - name: Add Bridge Domain
+    aci_bd:
+     host: "{{ inventory_hostname }}"
+     username: "{{ username }}"
+     password: "{{ password }}"
+     validate_certs: no
+     state: "{{ state }}"
+     tenant: "{{ tenant }}"
+     bd: "{{ tenant }}-bd"
+     mac_address: 00:22:BD:F8:19:FE
+     vrf: "{{ vrf }}"
