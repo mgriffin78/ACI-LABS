@@ -1,6 +1,6 @@
 ---
 tenants:
- - POD2_Tenant1
- - POD2_Tenant2
- - POD2_Tenant3
- - POD2_Tenant4
+ - POD5_Tenant1
+ - POD5_Tenant2
+ - POD5_Tenant3
+ - POD5_Tenant4
