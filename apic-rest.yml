@@ -3,7 +3,7 @@
   connection: local
   gather_facts: no
   vars:
-   tenant: 'POD13_RESTAPI'
+   tenant: 'POD14_RESTAPI'
    descr: 'Created by the Ansible via REST API'
   tasks:
   - name: Add a tenant using REST API
