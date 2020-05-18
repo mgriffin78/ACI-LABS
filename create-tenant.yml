@@ -3,8 +3,8 @@
   connection: local
   gather_facts: no
   vars:
-   tenant: POD9_Ansible
-   vrf: POD9_VRF
+   tenant: POD11_Ansible
+   vrf: POD11_VRF
    state: present
   tasks:
   - name: Add a new tenant
